@@ -1,0 +1,28 @@
+{
+  "name": "inode-server",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "Expose iNode.pl BLE devices through HTTP and MODBUS.",
+  "author": {
+    "name": "Łukasz Walukiewicz",
+    "email": "lukasz@miracle.systems",
+    "url": "https://miracle.systems/"
+  },
+  "keywords": ["inode", "bluetooth", "ble", "iot", "modbus", "gsm", "sensor"],
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "node ./lib/index.js"
+  },
+  "bugs": "https://github.com/morkai/walkner-utilio/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/morkai/walkner-utilio.git"
+  },
+  "dependencies": {
+    "noble": "^1.3.0",
+    "h5.modbus": "github:morkai/h5.modbus#master",
+    "h5.modbus.inode": "github:morkai/h5.modbus.inode#master",
+    "h5.bluetooth.hci": "github:morkai/h5.bluetooth.hci#master",
+    "h5.bluetooth.hci.inode": "github:morkai/h5.bluetooth.hci.inode#master"
+  }
+}

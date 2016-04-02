@@ -1,0 +1,130 @@
+{
+  "autoDiscovery": {
+    "enabled": true,
+    "remember": false
+  },
+  "ble": {
+    "enabled": true
+  },
+  "http": {
+    "enabled": true,
+    "gsmUploadUrl": "/1337",
+    "gsmReportDumpPath": "./reports.json",
+    "gsmReportRestoreTime": 15,
+    "host": "0.0.0.0",
+    "port": 80
+  },
+  "devices": [
+    {
+      "id": "cs3-1",
+      "enabled": true,
+      "unit": 1,
+      "mac": "00:12:6F:6D:3E:06"
+    },
+    {
+      "id": "cs3-2",
+      "enabled": true,
+      "unit": 2,
+      "mac": "00:12:6F:6D:3C:55"
+    },
+    {
+      "id": "cs3-3",
+      "enabled": true,
+      "unit": 3,
+      "mac": "00:12:6F:91:36:69"
+    },
+    {
+      "id": "cs3-4",
+      "enabled": true,
+      "unit": 4,
+      "mac": "00:12:6F:91:36:6A"
+    },
+    {
+      "id": "csht-1",
+      "enabled": true,
+      "unit": 51,
+      "mac": "00:12:6F:91:38:48"
+    },
+    {
+      "id": "csht-2",
+      "enabled": true,
+      "unit": 52,
+      "mac": "00:12:6F:91:38:19"
+    },
+    {
+      "id": "em-1",
+      "enabled": true,
+      "unit": 101,
+      "mac": "00:12:6F:91:35:FB",
+      "deviceTimeout": 120000
+    },
+    {
+      "id": "em-2",
+      "enabled": true,
+      "unit": 102,
+      "mac": "00:12:6F:91:37:A1",
+      "deviceTimeout": 120000
+    },
+    {
+      "id": "em-3",
+      "enabled": true,
+      "unit": 103,
+      "mac": "00:12:6F:91:37:28",
+      "deviceTimeout": 120000
+    },
+    {
+      "id": "em-4",
+      "enabled": true,
+      "unit": 104,
+      "mac": "00:12:6F:91:37:35",
+      "deviceTimeout": 120000
+    },
+    {
+      "id": "id-1",
+      "enabled": true,
+      "unit": 151,
+      "mac": "00:12:6F:91:38:18"
+    },
+    {
+      "id": "bn-1",
+      "enabled": true,
+      "unit": 201,
+      "mac": "00:12:6F:35:60:17"
+    },
+    {
+      "id": "bn-2",
+      "enabled": true,
+      "unit": 202,
+      "mac": "00:12:6F:35:62:40"
+    }
+  ],
+  "slaves": [
+    {
+      "id": "slave-tcp-1",
+      "enabled": true,
+      "maxBufferOverflows": 3,
+      "transport": {
+        "type": "ip"
+      },
+      "listener": {
+        "tcp": "tcp",
+        "serverOptions": {
+          "host": "0.0.0.0",
+          "port": 502
+        }
+      }
+    }
+  ],
+  "lans": [
+    {
+      "id": "lan-1",
+      "enabled": true,
+      "type": "tcp",
+      "socketOptions": {
+        "host": "192.168.1.210",
+        "port": 5500
+      },
+      "noActivityTime": 15000
+    }
+  ]
+}
