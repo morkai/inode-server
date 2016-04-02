@@ -52,7 +52,7 @@ project for information about the exposed registers.
 Configuration is specified in a JSON file passed to the `server.js` as
 the first argument.
 
-```json
+```js
 {
   // Auto-discovery - whether to add or ignore devices that are not present
   // in the `devices` list specified below. Auto-discovered devices are
