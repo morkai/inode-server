@@ -107,7 +107,7 @@
         "type": "ip"
       },
       "listener": {
-        "tcp": "tcp",
+        "type": "tcp",
         "serverOptions": {
           "host": "0.0.0.0",
           "port": 502
