@@ -32,8 +32,8 @@ npm start -- ./example/config.json
 
 ### HTTP
 
-If the `http` module is enabled, then all devices are available under
-the `/devices` resource.
+If the `http` module is enabled, then all devices are available through
+HTTP under the `/devices` resource.
 
 A single device is accessible through `/devices/<mac-address>`
 or `/devices/<modbus-unit>`.
@@ -44,8 +44,38 @@ iNode GSM can `POST` data to the `http.gsmUploadUrl` resource.
 
 If there are any `slaves` defined, then all devices are available through MODBUS.
 
+See the [h5.modbus](https://github.com/morkai/h5.modbus)
+project for information about the available slave definitions.
+
 See the [h5.modbus.inode](https://github.com/morkai/h5.modbus.inode)
 project for information about the exposed registers.
+
+### WebSockets
+
+If the `ws` module is enabled, then all devices are available through
+WebSockets under the resource specified in the `path` config option.
+
+The server sends various events to connected clients. Each event is
+a JSON object with `type` and `data` properties.
+
+The `ping` event is sent if there weren't any other broadcasts sent
+in `pingInterval` ms.
+
+The `device:add` event is sent when a new device is discovered.
+The `data` is an array of added devices. A list of all devices is sent
+to a client as soon as it connects.
+
+The `device:remove` event is sent when an existing device is removed.
+The `data` event is an object with a `device` property which contains
+a MAC address of the removed device.
+
+The `device:change` event is sent when a state of aby device changes.
+The `data` event is an object with a `device` property which contains
+a MAC address of the changed device and a `changes` property which is
+an object of changed properties.
+
+The client may send `ping` events to which the server will respond with
+`pong` event.
 
 ## Configuration
 
@@ -87,6 +117,30 @@ the first argument.
     "host": "0.0.0.0",
     // Port to bind to. Defaults to `80`.
     "port": 80
+  },
+  // WebSocket server - whether to expose the device data through
+  // WebSockets. All options are passed down to `WebSocketServer` from
+  // the `ws` package (https://github.com/websockets/ws).
+  "ws": {
+    // Enable/disable the HTTP server. Defaults to `true`.
+    "enabled": true,
+    // WebSocket endpoint. Defaults to `null` (any path).
+    "path": "/devices",
+    // Host to bind to. Defaults to `0.0.0.0` (all network interfaces).
+    "host": "0.0.0.0",
+    // Port to bind to. Defaults to `80`.
+    // If the HTTP server is enabled and the port is not specified,
+    // then the WebSocket server is attached to that HTTP server.
+    // If the HTTP server is enabled and the specified host and port
+    // are equal to the HTTP server's host and port, then the WebSocket
+    // server is attached to that HTTP server.
+    // Otherwise, a new HTTP server is created.
+    "port": 80,
+    // Period of time (in milliseconds) between keep-alive pings sent to
+    // all connected clients. May be used to generate traffic so some
+    // intermidiary (like nginx) doesn't terminate the connection.
+    // Defaults to `30000` (`0` to disable).
+    "pingInterval": 15000
   },
   // List of known devices. Data from devices not on this list will be
   // ignored if the auto-discovery is disabled.
